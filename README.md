@@ -48,11 +48,11 @@ MLPROJECT/
 
 ## 🔄 Next Steps
 
-- Perform feature extraction (e.g., HOG: Histogram of Oriented Gradients)
+-- Perform feature extraction using **Convolutional Neural Networks (CNN)**
 - Train models such as:
-  - SVM (Support Vector Machine)
-  - KNN (K-Nearest Neighbors)
-  - Random Forest
+- SVM (Support Vector Machine)
+- KNN (K-Nearest Neighbors)
+- Random Forest
 - Evaluate model performance and accuracy
 
 ---
