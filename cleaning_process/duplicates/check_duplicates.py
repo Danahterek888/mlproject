@@ -1,22 +1,37 @@
+
 import os
 import pandas as pd
 
 # === Paths ===
-input_csv = "../../initial Dataset/ethnicity-classifier.csv"
+train_csv = "../../initial Dataset/ethnicity-classifier-train.csv"
+val_csv   = "../../initial Dataset/ethnicity-classifier-val.csv"
 output_dir = "."
 os.makedirs(output_dir, exist_ok=True)
 
-# === Load CSV ===
-df = pd.read_csv(input_csv)
+# === Load CSVs ===
+df_train = pd.read_csv(train_csv)
+df_val   = pd.read_csv(val_csv)
 
-# === Find duplicates ===
-duplicates = df[df.duplicated()]
-print(f"\n📎 Found {duplicates.shape[0]} duplicate rows")
+# === Find duplicates in TRAIN ===
+duplicates_train = df_train[df_train.duplicated()]
+print(f"\n📎 Found {duplicates_train.shape[0]} duplicate rows in TRAIN")
 
-# === Save duplicates to CSV
-if not duplicates.empty:
-    output_path = os.path.join(output_dir, "duplicates_backup.csv")
-    duplicates.to_csv(output_path, index=False)
-    print(f"💾 Saved to '{output_path}'")
+# === Save train duplicates to CSV
+if not duplicates_train.empty:
+    output_path_train = os.path.join(output_dir, "duplicates_backup_train.csv")
+    duplicates_train.to_csv(output_path_train, index=False)
+    print(f"💾 Saved to '{output_path_train}'")
 else:
-    print("✅ No duplicates found.")
+    print("✅ No duplicates found in TRAIN.")
+
+# === Find duplicates in VAL ===
+duplicates_val = df_val[df_val.duplicated()]
+print(f"\n📎 Found {duplicates_val.shape[0]} duplicate rows in VAL")
+
+# === Save val duplicates to CSV
+if not duplicates_val.empty:
+    output_path_val = os.path.join(output_dir, "duplicates_backup_val.csv")
+    duplicates_val.to_csv(output_path_val, index=False)
+    print(f"💾 Saved to '{output_path_val}'")
+else:
+    print("✅ No duplicates found in VAL.")

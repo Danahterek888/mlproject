@@ -1,19 +1,34 @@
+
 import os
 import pandas as pd
 
 # === Paths ===
-input_csv = "../../initial Dataset/ethnicity-classifier.csv"
-output_path = "../../final Dataset/cleaned_ethnicity-classifier.csv"
+train_csv = "../../initial Dataset/ethnicity-classifier-train.csv"
+val_csv   = "../../initial Dataset/ethnicity-classifier-val.csv"
+train_output = "../../final Dataset/cleaned_ethnicity-classifier-train.csv"
+val_output   = "../../final Dataset/cleaned_ethnicity-classifier-val.csv"
 
-# === Load dataset ===
-df = pd.read_csv(input_csv)
-print(f"📄 Original rows: {df.shape[0]}")
+# === Load TRAIN dataset ===
+df_train = pd.read_csv(train_csv)
+print(f"📄 TRAIN original rows: {df_train.shape[0]}")
 
-# === Drop null rows ===
-df_cleaned = df.dropna().reset_index(drop=True)
-print(f"✅ Nulls removed. Remaining rows: {df_cleaned.shape[0]}")
+# === Drop null rows (TRAIN) ===
+df_train_cleaned = df_train.dropna().reset_index(drop=True)
+print(f"✅ TRAIN nulls removed. Remaining rows: {df_train_cleaned.shape[0]}")
 
-# === Save cleaned dataset ===
+# === Save cleaned TRAIN dataset ===
 os.makedirs("../../final Dataset", exist_ok=True)
-df_cleaned.to_csv(output_path, index=False)
-print(f"💾 Cleaned dataset saved to: {output_path}")
+df_train_cleaned.to_csv(train_output, index=False)
+print(f"💾 Cleaned TRAIN dataset saved to: {train_output}")
+
+# === Load VAL dataset ===
+df_val = pd.read_csv(val_csv)
+print(f"\n📄 VAL original rows: {df_val.shape[0]}")
+
+# === Drop null rows (VAL) ===
+df_val_cleaned = df_val.dropna().reset_index(drop=True)
+print(f"✅ VAL nulls removed. Remaining rows: {df_val_cleaned.shape[0]}")
+
+# === Save cleaned VAL dataset ===
+df_val_cleaned.to_csv(val_output, index=False)
+print(f"💾 Cleaned VAL dataset saved to: {val_output}")
