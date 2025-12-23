@@ -60,7 +60,7 @@ MLPROJECT/
 ## 👥 Authors
 
 - Joelle Sarkis
-- Dana el Terek
+- Danah el Terek
 - Samir Najib
 
 ---
